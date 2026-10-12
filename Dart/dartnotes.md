@@ -89,4 +89,12 @@ add value at end
 
  to find the index of value Scores.indexOf(20);
 
+### sets
 
+Set<String> names = {"mario","ligui", "peach"};
+
+// dont allow to change the datatype in set and also dont allow to set dupliacte value 
+
+names.add("ali"); and if we enter value which is already in set then it will not enter because it dont allow duplicates
+
+name.remove(""); .lenght();
