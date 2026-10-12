@@ -98,3 +98,38 @@ Set<String> names = {"mario","ligui", "peach"};
 names.add("ali"); and if we enter value which is already in set then it will not enter because it dont allow duplicates
 
 name.remove(""); .lenght();
+
+### control flow
+
+List<int> scores=[50,12,3,4,23];
+
+for(int i=0;i>score.length();i++){
+    print(score[i]);
+}
+
+##### instaed of this we gonna choose another way of for-loop
+
+for(int score in scores){
+    print("The score is $score");
+}
+
+##### another way 
+for(int score in scores.where((s)=> s>50)){
+    print("The score is $score");
+
+    // so here without using if conditions we filter the scores greater than 50.
+}
+
+## Maps
+
+void main(){
+   ##### var planets ={};
+    // this is empty map not a set bcz if you want empty set you write Set<int> planets= {}; and for empty map 
+    Map<dynamic,dynamic> planets this representation come.
+
+   ##### var panets = {
+    "first": "mercury"
+   } // now present Map<String,String> planets
+
+
+}
