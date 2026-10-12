@@ -129,7 +129,26 @@ void main(){
 
    ##### var panets = {
     "first": "mercury"
-   } // now present Map<String,String> planets
+   } // now present Map<String,String> planets and we decide any datatype to wriet like 1:"sdfs" or "kdshf":2
+
+#### for specific write
+  Map<int, String> planets = {};
+// here you bound to write value in that datatypes
+
+Map<String, String> planet= {
+    "first":"mercury",
+    "second":"venus",
+    "third":"earth",
+    "fourth":"mars"
+};
+
+##### to print this print(planets);
+
+##### to print a specific print(planet["fourth"]); it gives mars
+
+##### to update planets["fourth"]= "asb";
+
+##### to ADD value planet["fifth"]="jupiter";
 
 
 }
