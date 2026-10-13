@@ -149,6 +149,12 @@ Map<String, String> planet= {
 ##### to update planets["fourth"]= "asb";
 
 ##### to ADD value planet["fifth"]="jupiter";
+##### to remove planets.remove("fifth"); // write key like first or sec and not value like earth or mars
+
+#### diff properties
+print(planets.containKey("fifth"));  // true/false
+
+
 
 
 }
