@@ -8,8 +8,17 @@ class MenuItem{
 }
 void main(){
     var noodles = MenuItem("veg noodles", 9.99);
-    var pizza = MenuItem("volcano pizza",12.99);
+    var pizza = Pizza(["mushrooms","peppers"],"veg pizza",12.99);
 
     print(noodles.price);
     print(pizza.title);
+    print(pizza.toppings);
+}
+
+class Pizza extends MenuItem{
+  List<String>toppings;
+  // Pizza (this.toppings, String title, double price): super(title,price);
+  // we also write it as 
+ Pizza (this.toppings, super.title, super.price);
+
 }

@@ -189,6 +189,34 @@ void main(){
     print(pizza.title);  // 12.99
 }
 
+### extend classes
 
+class Pizza extends MenuItems{
+    List<String> topping; 
+}
+ // in that there are many issues like here we create pizza constructor and then there is a conflict in main class so we use super keyword see below the correct code:
 
+ class MenuItem{
+    String title;
+    double price;
+
+ // MenuItem(String title, double price){} instead of this w e use this keyword.
+
+ MenuItem(this.title,this.price);  
+}
+void main(){
+    var noodles = MenuItem("veg noodles", 9.99);
+    var pizza = Pizza(["mushrooms","peppers"],"veg pizza",12.99);
+
+    print(noodles.price);
+    print(pizza.title);
+}
+
+class Pizza extends MenuItem{
+  List<String>toppings;
+  Pizza (this.toppings, String title, double price): super(title,price);
+    // we also write it as 
+ Pizza (this.toppings, super.title, super.price);
+
+}
 
