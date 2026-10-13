@@ -141,6 +141,7 @@ Map<String, String> planet= {
     "third":"earth",
     "fourth":"mars"
 };
+}
 
 ##### to print this print(planets);
 
@@ -155,6 +156,39 @@ Map<String, String> planet= {
 print(planets.containKey("fifth"));  // true/false
 
 
+### classes
 
+void main(){
+     var noodles = MenuItem();
+     var pizza = MenuItem();
 
 }
+
+class MenuItem() {
+    String title = "Pizza";
+    double price = 9.99;
+}
+
+#### in that code there is a issue it runs but the noodles and pizza has same values assign. so better one is below:
+
+here comes constructor
+
+class MenuItem{
+    String title;
+    double price;
+
+ // MenuItem(String title, double price){} instead of this w e use this keyword.
+
+ MenuItem(this.title,this.price);  
+}
+void main(){
+    var noodles = MenuItem("veg noodles", 9.99);
+    var pizza = MenuItem("volcano pizza",12.99);
+
+    print(noodles.price); // 9.99
+    print(pizza.title);  // 12.99
+}
+
+
+
+
