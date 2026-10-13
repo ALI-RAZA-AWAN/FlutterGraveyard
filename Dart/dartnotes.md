@@ -203,6 +203,10 @@ class Pizza extends MenuItems{
  // MenuItem(String title, double price){} instead of this w e use this keyword.
 
  MenuItem(this.title,this.price);  
+
+ String format(){
+    return "$title --> $price";
+ }
 }
 void main(){
     var noodles = MenuItem("veg noodles", 9.99);
@@ -210,6 +214,8 @@ void main(){
 
     print(noodles.price);
     print(pizza.title);
+     print(noodles.format());
+      print(pizza.format());
 }
 
 class Pizza extends MenuItem{
@@ -218,5 +224,20 @@ class Pizza extends MenuItem{
     // we also write it as 
  Pizza (this.toppings, super.title, super.price);
 
+### method overloading write @override
+
+ String format(){
+   var formatedtopping = "contain";
+
+   for (String t in toppings){
+    formatedtopping = "$formatedtopping $t";
+   }
+   return "$title --> PKR$price --> $formatedtopping";
+ }
+
+
 }
+
+
+
 
