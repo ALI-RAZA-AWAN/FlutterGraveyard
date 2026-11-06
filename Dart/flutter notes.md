@@ -200,4 +200,50 @@ Return type is void	        Return type is Widget
 
 
 ### setState():
+Changing a variable alone does not tell Flutter to rebuild the UI.That's why we need setState().
+setState() tells Flutter that the State object has changed and its UI needs to be rebuilt.
+#### code
+setState(() {
+  count = count + 1;
+});
+
+### code of a proper example
+class MyCounter extends StatefulWidget {
+  @override
+  State<MyCounter> createState() {
+    return _MyCounterState();
+  }
+}
+
+class _MyCounterState extends State<MyCounter> {
+
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Text("$count"),
+
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                count = count + 1;
+              });
+            },
+            child: Text("Add Visit"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+### dispose()
+In simple words:
+- initState() → Initialize things.
+- build() → Display UI.
+- setState() → Update UI.
+- dispose() → Clean up resources.
 
