@@ -125,6 +125,29 @@ Scaffold(
 imagine punchy has a counter and everytime press it increase the shown data on runtime.
 StatefulWidget = A widget that can manage changing data (state) and update its UI when that state changes.
 
+#### code:
+class MyCounter extends StatefulWidget {
+  @override
+  State<MyCounter> createState() {
+    return _MyCounterState();
+  }}
+
+createState() creates the state object for our widget.
+State<MyCounter> tells Dart that this state belongs to MyCounter.
+_MyCounterState() creates and returns that state object.
+
+
+#### Look at the second class:
+class _MyCounterState extends State<MyCounter> {
+  int count = 0;
+ @override
+  Widget build(BuildContext context) {
+    return Text("$count");
+  }}
+
+In that widget we see that first a class then extends with statefullwidget and then in that class make a state by State<class name which it belongs> createState(){
+  return _MyCounterState();  // this manage the state
+} 
 
 
 ### SafeArea and Notch
@@ -163,4 +186,18 @@ Widget buildBox(IconData icon, String title) {
   );
 }
 
+
+
+
+### initState():
+when you open app first time and you want before displaying the screen flutter initialize data, prepare system and load initial info then we use init state and it run fro once when statefullwidget state object is created.
+
+initState()	                build()
+Runs once per State object	Can run multiple times
+Used for initial setup	    Describes UI
+Doesn't return a widget    	Returns a widget
+Return type is void	        Return type is Widget
+
+
+### setState():
 
