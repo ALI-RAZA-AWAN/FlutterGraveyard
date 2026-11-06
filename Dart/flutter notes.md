@@ -246,4 +246,26 @@ In simple words:
 - build() → Display UI.
 - setState() → Update UI.
 - dispose() → Clean up resources.
+#### code
+@override
+void dispose() {
+  controller.dispose();
 
+  super.dispose();
+}
+
+
+### Container
+Think of a Container as a box that can hold another widget.
+
+You can customize its:
+- Width
+- Height
+- Background color
+- Padding
+- Margin
+- Border
+- Border radius
+- Alignment
+
+A Container accepts one child, not a children list.If you want multiple widgets inside it, you can use a Column or Row as its child.
