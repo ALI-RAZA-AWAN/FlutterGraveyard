@@ -269,3 +269,117 @@ You can customize its:
 - Alignment
 
 A Container accepts one child, not a children list.If you want multiple widgets inside it, you can use a Column or Row as its child.
+
+#### 1. Padding
+Padding means space inside the Container, between its boundary and its child.
+
+Container(
+  padding: EdgeInsets.all(20),
+  color: Colors.teal,
+  child: Text("Hello Punchy"),
+)  // EdgeInsets.all(20) means 20 logical pixels of padding on all four sides. and other ways
+EdgeInsets.all(20)
+EdgeInsets.symmetric(horizontal: 20, vertical: 10)
+EdgeInsets.only(left: 10, top: 20)
+
+##### 2. Margin
+Margin means space outside the Container, separating it from surrounding widgets.
+
+Container(
+  margin: EdgeInsets.all(20),
+  color: Colors.teal,
+  child: Text("Hello Punchy"),
+)
+
+#### 3. Alignment
+Alignment controls where the child is positioned inside the Container.
+Container(
+  width: 200,
+  height: 150,
+  alignment: Alignment.center,
+  child: Text("Punchy"),
+)
+Value	                Position
+Alignment.center	    Center
+Alignment.topLeft	    Top left
+Alignment.topRight	  Top right
+Alignment.bottomLeft	Bottom left
+Alignment.bottomRight	Bottom right
+Alignment.centerLeft	Center left
+
+##### 4. Decoration
+Decoration lets you customize the Container's appearance using BoxDecoration.
+Container(
+  width: 200,
+  height: 100,
+  decoration: BoxDecoration(
+    color: Colors.teal,
+    borderRadius: BorderRadius.circular(15),
+    border: Border.all(
+      color: Colors.black,
+      width: 2,
+    ),
+  ),
+  child: Text("Punchy"),
+)
+
+### Box shadow
+Container(
+  width: 200,
+  height: 100,
+  decoration: BoxDecoration(
+    color: Colors.white,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey,
+        blurRadius: 10,
+        spreadRadius: 2,
+        offset: Offset(2, 4),
+      ),
+    ],
+  ),
+)
+
+
+#### Constraints control the allowed size of a Container.
+Container(
+  constraints: BoxConstraints(
+    minWidth: 100,  
+    maxWidth: 300,
+    minHeight: 50,
+    maxHeight: 150,
+  ),
+  child: Text("Punchy"),
+)
+
+### practise 
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp(
+      home:Scaffold(
+        Container(
+          width:250,
+          height:120,
+          padding: EdgeInsets.all(15),
+          boxDecoration:BoxDecoration(
+              color:Colors.teal,
+            borderRadius:BorderRadius.circular(12),
+          ),
+          child: Text("Punchy"),
+
+        ),
+      ),
+    ),
+  );
+}
+
+
+#### some questions:
+Why put color: Colors.teal inside BoxDecoration?
+
+Because when we use decoration: BoxDecoration(), the background color belongs inside BoxDecoration.
+
+
+### Text Widget
