@@ -77,12 +77,54 @@ Example: fixed heading, icon grid, simple profile card.
 UI ko change karne ke liye apni internal changing state manage nahi kar raha.
 
 StatefulWidget
+Imagine you have a screen displaying:
+Ali Raza
+Flutter Developer
+Welcome to my profile!
+
+Does this screen need to change something by itself?
+No. It simply displays information.
+This is a good example of a StatelessWidget.
+
+StatelessWidget = A widget whose own internal state doesn't change over time.
 Example: counter button, checkbox, changing score.
+
+### code:
+class MyProfile extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("Ali Raza");
+  }
+
+}
+
+### code explanation:
+class creates a class.
+MyProfile is our class name.
+extends StatelessWidget means we're creating a Flutter StatelessWidget.
+@override means we're implementing a method inherited from the parent class.
+Widget means this method returns a widget.
+build() is responsible for describing the UI.
+BuildContext provides information about where this widget exists in the widget tree.
 
 Jab data change ho aur us change ke mutabiq UI update karna ho, to StatefulWidget use kar sakte ho.
 
 
 Important: Stateless widget ka matlab ye nahi ke screen kabhi change hi nahi ho sakti. Parent se new data milne par bhi rebuild ho sakti hai. Bas ye khud changing state manage nahi karti.
+
+
+## importnat reuseability:
+the upper we write a class my profile so now we use this profile in another widget and functions also reuse like that
+#### code
+Scaffold(
+  body: MyProfile(),
+)
+
+### stateful widget:
+imagine punchy has a counter and everytime press it increase the shown data on runtime.
+StatefulWidget = A widget that can manage changing data (state) and update its UI when that state changes.
+
 
 
 ### SafeArea and Notch
@@ -120,3 +162,5 @@ Widget buildBox(IconData icon, String title) {
     child: Text(title),
   );
 }
+
+
