@@ -521,3 +521,63 @@ Common BoxFit values:
 - BoxFit.fill — stretches to fill the dimensions.
 
 ### AppBar
+AppBar is the top navigation bar of a screen.
+AppBar(
+  title: Text("Punchy"),
+  backgroundColor: Colors.teal,
+  foregroundColor: Colors.white,
+  centerTitle: true,
+  elevation: 2,
+)
+###### Important properties:
+Property	          Purpose
+title	              Title displayed in AppBar
+backgroundColor	    Background color
+foregroundColor	    Title and icon color
+centerTitle	        Centers the title
+elevation	          Shadow depth
+actions	            Widgets on the right side
+leading           	Widget on the left side
+
+#### example of actions:
+AppBar(
+  title: Text("Punchy"),
+  actions: [
+    Icon(Icons.notifications),
+    Icon(Icons.person),
+  ],
+)
+
+
+### Drawer
+A Drawer is a side navigation panel that usually opens from the left side of the screen.
+
+#### code
+Scaffold(
+  appBar: AppBar(
+    title: Text("Punchy"),
+  ),
+
+  drawer: Drawer(
+    child: Column(
+      children: [
+        DrawerHeader(
+          child: Text("Welcome to Punchy"),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text("Home"),
+        ),
+        ListTile(
+          leading: Icon(Icons.card_giftcard),
+          title: Text("Rewards"),
+        ),
+      ],
+    ),
+  ),
+)
+##### Important concepts:
+- drawer is a property of Scaffold.
+- Drawer creates the side panel.
+- DrawerHeader creates its header section.
+- ListTile creates individual navigation items.
