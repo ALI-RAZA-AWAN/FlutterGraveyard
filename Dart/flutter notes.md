@@ -487,3 +487,37 @@ ListTile(
 
 ##### Important: ListTile arranges these elements for you. You don't need to manually create a Row and Column for this common list layout.
 
+### CircleAvatar
+CircleAvatar displays a circular image or icon, commonly used for profile pictures.
+CircleAvatar(
+  radius: 30,
+  backgroundColor: Colors.teal,
+  child: Icon(
+    Icons.person,
+    color: Colors.white,
+  ),
+)
+
+### Image
+The Image widget displays pictures in your application.
+##### A. Network image
+Image.network(
+  "https://example.com/photo.jpg",
+  width: 150,
+  height: 150,
+)
+
+##### Asset image
+Loads an image stored inside your project.
+Image.asset(
+  "assets/images/logo.png",
+  width: 150,
+)
+#### Imp: You must also register asset folders in pubspec.yaml.
+
+Common BoxFit values:
+- BoxFit.cover — fills the available space, possibly cropping.
+- BoxFit.contain — shows the entire image.
+- BoxFit.fill — stretches to fill the dimensions.
+
+### AppBar
