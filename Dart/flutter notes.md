@@ -608,3 +608,61 @@ Left to right	             Top to bottom
 Main axis = Horizontal	   Main axis = Vertical
 Cross axis = Vertical	     Cross axis = Horizontal
 
+### MainAxis vs CrossAxis
+Every Row and Column has two axes:
+- MainAxis: The direction in which children are arranged.
+- CrossAxis: The direction perpendicular to the MainAxis.
+##### In a Row:
+- MainAxis = Horizontal
+- CrossAxis = Vertical
+##### In a Column:
+- MainAxis = Vertical
+- CrossAxis = Horizontal
+
+### MainAxisAlignment 
+Controls how children are positioned along the MainAxis.
+For example, in a Row, it controls horizontal positioning.
+##### code
+MainAxisAlignment.spaceEvenly
+
+There are six important values:
+1. start — Places children at the beginning.
+123
+2. end — Places children at the end.
+                                123
+3. center — Places children in the center.
+              123
+4. spaceBetween — Equal space between children, no extra space at the ends.
+1              2                 3
+5. spaceAround — Equal space around each child.
+
+6. spaceEvenly — Equal space between children and at both ends.
+
+
+###  CrossAxisAlignment
+Controls child positioning along the CrossAxis.
+
+For example, in a Row, it controls vertical positioning.
+Important  values:
+Value	     Meaning
+start	     Beginning of cross axis
+center	   Center
+end	       End of cross axis
+stretch	   Expand children across cross axis
+baseline	 Align text baselines
+
+
+### example of both axisalignment
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Icon(Icons.home),
+    Text("Home"),
+    Icon(Icons.person),
+  ],
+)
+here:
+mainAxisAlignment.center centers children horizontally.
+crossAxisAlignment.start aligns them to the top of the Row's cross axis.
+
