@@ -455,3 +455,35 @@ elevation	           Shadow depth
 minimumSize	         Minimum button size
 shape	               Button shape
 
+### Badge 
+A Badge displays a small notification indicator or count on another widget.
+
+##### code
+Badge(
+  label: Text("3"),
+  child: Icon(Icons.notifications),
+)
+Important properties:
+- label: Displays a number or text.
+- child: The widget on which the badge appears.
+- backgroundColor: Changes badge background.
+- textColor: Changes badge text color.
+- isLabelVisible: Shows or hides the label.
+
+
+### ListTile
+ListTile is a ready-made horizontal layout for displaying information in a list.
+
+#### code
+ListTile(
+  leading: Icon(Icons.coffee),
+  title: Text("Coffee House"),
+  subtitle: Text("Collect 5 punches"),
+  trailing: Icon(Icons.arrow_forward),
+  onTap: () {
+    print("Business clicked");
+  },
+)
+
+##### Important: ListTile arranges these elements for you. You don't need to manually create a Row and Column for this common list layout.
+
