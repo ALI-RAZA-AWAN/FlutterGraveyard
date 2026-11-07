@@ -581,3 +581,30 @@ Scaffold(
 - Drawer creates the side panel.
 - DrawerHeader creates its header section.
 - ListTile creates individual navigation items.
+
+### Row + Column
+Row arranges its children horizontally (left to right).
+Row(
+  children: [
+    Icon(Icons.home),
+    Text("Home"),
+    Icon(Icons.person),
+  ],
+)
+
+Column arranges its children vertically (top to bottom).
+Column(
+  children: [
+    Icon(Icons.home),
+    Text("Home"),
+    Icon(Icons.person),
+  ],
+)
+
+##### Very important difference
+Row	                       Column
+Horizontal layout	         Vertical layout
+Left to right	             Top to bottom
+Main axis = Horizontal	   Main axis = Vertical
+Cross axis = Vertical	     Cross axis = Horizontal
+
