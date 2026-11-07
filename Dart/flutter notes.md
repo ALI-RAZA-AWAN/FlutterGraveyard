@@ -1746,3 +1746,46 @@ obscureText: true,
 This hides the password characters while the user types.
 
 
+### 1. What is pubspec.yaml?
+It's the configuration file of your Flutter project.
+It tells Flutter important information about your application, such as:
+- Project name
+- Version
+- Dependencies (external packages)
+- Assets (images, fonts, etc.)
+- SDK requirements
+
+Suppose you want to use an external package in Punchy.
+For example, an icon package or an HTTP networking package.
+You add it under:
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+Then run:
+##### flutter pub get
+This downloads and resolves the required packages.
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/fonts/custom_font.ttf
+
+
+### dependencies 
+dependencies:
+  flutter:
+    sdk: flutter
+
+  http: ^1.2.0
+
+  ##### After adding it, use it in your Dart file:
+import 'package:http/http.dart' as http;
+Now you can access functionality provided by the HTTP package.
+
