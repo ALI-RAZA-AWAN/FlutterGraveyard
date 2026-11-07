@@ -383,3 +383,75 @@ Because when we use decoration: BoxDecoration(), the background color belongs in
 
 
 ### Text Widget
+Text("Welcome to Punchy")
+#### A. style
+Used to customize the appearance of text.
+Text(
+  "Welcome to Punchy",
+  style: TextStyle(
+    fontSize: 24,
+    color: Colors.teal,
+    fontWeight: FontWeight.bold,
+  ),
+)
+
+##### textAlign
+Controls horizontal text alignment.
+textAlign: TextAlign.center
+
+
+Other values include:
+- TextAlign.left
+- TextAlign.right
+- TextAlign.start
+- TextAlign.end
+- TextAlign.justify
+
+##### Limits how many lines of text can appear.
+maxLines: 2
+
+##### overflow
+Controls what happens when text doesn't fit.
+overflow: TextOverflow.ellipsis
+This adds ... when text is too long.
+
+
+### Icon Widget
+Icon(Icons.home)
+
+Icon is the Flutter widget.
+Icons.home specifies which icon to display.
+
+also properties
+Icon(
+  Icons.card_giftcard,
+  size: 35,
+  color: Colors.teal,
+)
+
+### ElevatedButton
+ElevatedButton(
+  onPressed: () {},
+  child: Text("Join Card"),
+)
+
+##### also style 
+ElevatedButton(
+  onPressed: () {},
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.teal,
+    foregroundColor: Colors.white,
+    padding: EdgeInsets.all(15),
+  ),
+  child: Text("Join Card"),
+)
+
+##### some properties
+Property	           Purpose
+backgroundColor	     Button background
+foregroundColor	     Text and icon color
+padding	Internal     spacing
+elevation	Shadow     depth
+minimumSize	Minimum  button size
+shape	Button shape
+
