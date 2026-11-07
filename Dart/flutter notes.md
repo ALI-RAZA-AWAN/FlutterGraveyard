@@ -1204,3 +1204,266 @@ ListView.builder(
     );
   },
 )
+
+
+
+### Navigation UI
+
+#### BottomNavigationBar
+It allows users to switch between different sections of an app without opening a completely new navigation route every time.
+#### Code: 
+
+Scaffold(
+  body: Center(
+    child: Text("Home Screen"),
+  ),
+
+  bottomNavigationBar: BottomNavigationBar(
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.favorite),
+        label: "Favorites",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: "Profile",
+      ),
+    ],
+  ),
+)
+
+
+### Handling clicks with currentIndex and onTap
+int selectedIndex = 0;
+
+Scaffold(
+  bottomNavigationBar: BottomNavigationBar(
+    currentIndex: selectedIndex,
+
+    onTap: (index) {
+      setState(() {
+        selectedIndex = index;
+      });
+    },
+
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.favorite),
+        label: "Favorites",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: "Profile",
+      ),
+    ],
+  ),
+)
+
+
+### also chnage content through navbar
+int selectedIndex = 0;
+
+final List<Widget> screens = [
+  Center(child: Text("Home Screen")),
+  Center(child: Text("Favorites Screen")),
+  Center(child: Text("Profile Screen")),
+];
+
+Scaffold(
+  body: screens[selectedIndex],
+
+  bottomNavigationBar: BottomNavigationBar(
+    currentIndex: selectedIndex,
+    onTap: (index) {
+      setState(() {
+        selectedIndex = index;
+      });
+    },
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.favorite),
+        label: "Favorites",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: "Profile",
+      ),
+    ],
+  ),
+)
+
+
+#### Top NavigationBar (AppBar)
+You already learned AppBar previously. Now let's understand its role in navigation.
+
+A top navigation bar appears at the top of the screen and can contain:
+- A title
+- Navigation actions
+- Tabs (which we'll study separately)
+- Menu or action icons
+##### code
+Scaffold(
+  appBar: AppBar(
+    title: Text("Punchy"),
+    leading: Icon(Icons.menu),
+    actions: [
+      Icon(Icons.notifications),
+      Icon(Icons.search),
+    ],
+  ),
+  body: Center(
+    child: Text("Home Screen"),
+  ),
+)
+
+### Tabs — TabBar and TabBarView
+
+#### What is TabBar?
+TabBar displays the clickable tabs.
+TabBar(
+  tabs: [
+    Tab(text: "Chats"),
+    Tab(text: "Status"),
+    Tab(text: "Calls"),
+  ],
+)
+
+### What is TabBarView?
+TabBarView displays the content associated with each tab.
+TabBarView(
+  children: [
+    Center(child: Text("Chats Screen")),
+    Center(child: Text("Status Screen")),
+    Center(child: Text("Calls Screen")),
+  ],
+)
+
+### Important: DefaultTabController
+To connect TabBar and TabBarView, we can use DefaultTabController.
+DefaultTabController(
+  length: 3,
+  child: Scaffold(
+    appBar: AppBar(
+      title: Text("Messages"),
+      bottom: TabBar(
+        tabs: [
+          Tab(text: "Chats"),
+          Tab(text: "Status"),
+          Tab(text: "Calls"),
+        ],
+      ),
+    ),
+
+    body: TabBarView(
+      children: [
+        Center(child: Text("Chats Screen")),
+        Center(child: Text("Status Screen")),
+        Center(child: Text("Calls Screen")),
+      ],
+    ),
+  ),
+)
+
+
+- length: 3 means there are three tabs.
+- bottom: TabBar(...) places tabs below the AppBar title.
+- TabBarView contains three corresponding screens.
+
+
+##### Real example using Punchy
+Imagine your Punchy app.
+
+BottomNavigationBar:
+- Home
+- Explore
+- Wallet
+- Profile
+These are the main sections of your app.
+
+TabBar inside Wallet:
+- All Cards
+- Active Cards
+- Completed Cards
+These are different categories within the Wallet section.
+
+
+### TextField is a Flutter widget that allows users to type text.
+TextField(
+  decoration: InputDecoration(
+    hintText: "Enter your name",
+    labelText: "Name",
+    border: OutlineInputBorder(),
+  ),
+)
+But how do we access the text entered by the user?
+
+##### We use TextEditingController.
+Example: A user enters their name in Punchy, and we want to retrieve that name when they press a button.
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  TextEditingController nameController =
+      TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          TextField(
+            controller: nameController,
+            decoration: InputDecoration(
+              labelText: "Enter your name",
+            ),
+          ),
+
+          ElevatedButton(
+            onPressed: () {
+              print(nameController.text);
+            },
+            child: Text("Submit"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+}
+
+##### 2. Understand three important things
+A. Creating the controller
+TextEditingController nameController =
+    TextEditingController();
+
+Creates a controller that can access the input text.
+
+B. Connecting it to TextField
+controller: nameController,
+Connects the controller with the input field.
+
+C. Getting the entered text
+nameController.text
+Returns whatever the user typed.
+
