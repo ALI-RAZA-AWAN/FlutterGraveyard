@@ -666,3 +666,541 @@ here:
 mainAxisAlignment.center centers children horizontally.
 crossAxisAlignment.start aligns them to the top of the Row's cross axis.
 
+#### MainAxisSize
+MainAxisSize controls how much space a Row or Column occupies along its MainAxis.
+
+It has two values:
+
+##### A. MainAxisSize.max
+Takes the maximum available space along the MainAxis.
+Column(
+  mainAxisSize: MainAxisSize.max,
+  children: [
+    Text("Punchy"),
+    Text("Loyalty App"),
+  ],
+)
+
+
+##### B. MainAxisSize.min
+
+Takes only the space required by its children.
+Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Text("Punchy"),
+    Text("Loyalty App"),
+  ],
+)
+
+##### Remember:
+- max = maximum available space.
+- min = minimum required space.
+
+##### Center
+Center places its child in the center of the available space.
+Center(
+  child: Text("Welcome to Punchy"),
+)
+
+### SizedBox
+SizedBox is used to:
+- Give a widget a specific width or height.
+- Create empty space between widgets.
+
+#### A. Set dimensions
+SizedBox(
+  width: 200,
+  height: 100,
+  child: Container(
+    color: Colors.teal,
+  ),
+)
+
+
+#### B. Create spacing
+Column(
+  children: [
+    Text("Punchy"),
+    SizedBox(height: 20),
+    Text("Loyalty App"),
+  ],
+)
+
+
+Here, SizedBox(height: 20) creates 20 pixels of vertical space.
+
+### Expanded
+Expanded tells a child of a Row or Column to take up the remaining available space along the MainAxis.
+
+#### code
+Row(
+  children: [
+    Icon(Icons.coffee),
+
+    Expanded(
+      child: Text("Coffee House"),
+    ),
+
+    Icon(Icons.arrow_forward),
+  ],
+)
+
+#### Remember:
+- In Row → Expanded takes remaining width.
+- In Column → Expanded takes remaining height.
+
+
+### Flexible
+You already learned Expanded. Now understand how Flexible is different.
+Both widgets work inside a Row or Column and help manage available space.
+Expanded: Forces its child to fill the allocated space.
+
+Flexible: Allows its child to use only the space it needs, up to the allocated space.
+
+#### code
+Row(
+  children: [
+    Flexible(
+      child: Container(
+        width: 100,
+        height: 100,
+        color: Colors.blue,
+      ),
+    ),
+    Expanded(
+      child: Container(
+        height: 100,
+        color: Colors.red,
+      ),
+    ),
+  ],
+)
+
+#### imp
+- Flexible allows the blue container to use less than its allocated space.
+- Expanded makes the red container fill its allocated space.
+Remember: Expanded is strict; Flexible is more relaxed.
+
+
+#### stack
+Imagine you want to show a notification badge on the top-right corner of a profile picture.
+Normally, Row and Column arrange widgets beside or below each other.
+But Stack places widgets on top of one another.
+#### code
+Stack(
+  children: [
+    CircleAvatar(
+      radius: 40,
+      backgroundColor: Colors.blue,
+    ),
+
+    Positioned(
+      top: 0,
+      right: 0,
+      child: Icon(
+        Icons.circle,
+        color: Colors.red,
+      ),
+    ),
+  ],
+)
+
+What's happening?
+1. CircleAvatar is the bottom layer.
+2. Icon is placed on top of it.
+3. Positioned controls where the icon appears.
+
+
+## Navigation
+When a customer clicks the Rewards button, the app opens the Rewards Screen.When they press Back, they return to the Home Screen.This is called Navigation.
+Navigator manages the screens (routes) of your Flutter application.
+
+### Navigator.push()
+push() opens a new screen on top of the current screen.
+
+Example:
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => RewardsScreen(),
+  ),
+);
+
+Understand each part:
+- Navigator manages navigation.
+- push() adds a new screen.
+- context tells Flutter where this navigation is happening.
+- MaterialPageRoute defines the new screen's route.
+- builder creates the screen.
+- RewardsScreen() is the screen we want to open.
+
+### Navigator.pop()
+pop() closes the current screen and returns to the previous screen.
+Navigator.pop(context);
+For example:
+Home → push() → Rewards
+Rewards → pop() → Home
+
+
+### Passing Data Between Screens
+class BusinessDetails extends StatelessWidget {
+  final String businessName;
+
+  BusinessDetails({required this.businessName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(businessName),
+      ),
+    );
+  }
+}
+businessName stores the received business name.
+final means it cannot be reassigned.
+required means we must provide it when creating this screen.
+
+##### Pass data using push()
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => BusinessDetails(
+      businessName: "Coffee House",
+    ),
+  ),
+);
+Now the Details Screen receives "Coffee House" and displays it.
+
+### Named Routes + pushNamed()
+So far, we used MaterialPageRoute to navigate between screens.Flutter also provides another method: Named Routes.
+
+#### Named Route
+Instead of directly mentioning the screen class every time, we assign a name to each screen.
+Screen	         Route name
+Home Screen	     /
+Rewards Screen	 /rewards
+Profile Screen	 /profile
+
+MaterialApp(
+  initialRoute: '/',
+  routes: {
+    '/': (context) => HomeScreen(),
+    '/rewards': (context) => RewardsScreen(),
+    '/profile': (context) => ProfileScreen(),
+  },
+);
+
+### Navigate using pushNamed()
+Now instead of writing MaterialPageRoute, simply write:
+##### Navigator.pushNamed(context, '/rewards');
+To return:
+##### Navigator.pop(context);
+
+That's it!
+Difference between both approaches
+Normal navigation         	Named navigation
+Navigator.push()	          Navigator.pushNamed()
+Uses MaterialPageRoute	    Uses a registered route name
+Directly specifies screen	  Uses route configuration
+
+### Passing Data with Named Routes
+You already learned how to pass data using MaterialPageRoute.
+
+But what if we want to pass "Coffee House" using pushNamed()?
+
+We use arguments.
+#### 1. Pass arguments
+Navigator.pushNamed(
+  context,
+  '/details',
+  arguments: 'Coffee House',
+);
+Here, arguments carries the data to the next screen.
+#### 2. Receive arguments
+Inside the destination screen:
+final businessName =
+    ModalRoute.of(context)!.settings.arguments as String;
+
+This retrieves the value passed through arguments.
+
+Remember the difference:
+- arguments → Sends data.
+- ModalRoute.of(context) → Retrieves route information.
+- settings.arguments → Gets the passed data.
+
+### Route Configuration — Complete Example
+
+We register all three routes:
+MaterialApp(
+  initialRoute: '/',
+  routes: {
+    '/': (context) => HomeScreen(),
+    '/rewards': (context) => RewardsScreen(),
+    '/profile': (context) => ProfileScreen(),
+  },
+);
+
+#### Navigate from home(home screen)
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/rewards');
+              },
+              child: Text("View Rewards"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+              child: Text("My Profile"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+### create reward screen
+class RewardsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My Rewards"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Go Back"),
+        ),
+      ),
+    );
+  }
+}
+
+### ListView vs ListView.builder
+Displays all the list using children that you provide.
+ListView(
+  children: [
+    Text("Coffee House"),
+    Text("Pizza House"),
+    Text("Burger Point"),
+  ],
+)
+
+### ListView.builder
+Builds list items on demand as they're needed for display.
+ListView.builder(
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    return Text("Business $index");
+  },
+)
+
+###### Two important things:
+1. itemCount: 5
+Tells Flutter how many items are in the list.
+2. itemBuilder
+A function that creates each list item when needed.
+3. index
+Represents the position of the current item. It starts from 0.
+
+### Remember this difference
+ListView	                   ListView.builder
+Uses predefined children	   Creates children through itemBuilder
+Good for small, fixed lists	  Good for large ordynamic lists
+You manually provide widgets	 Flutter builds items as needed
+
+### code:
+List<String> businesses = [
+  "Coffee House",
+  "Pizza Point",
+  "Burger Lab",
+];
+
+ListView.builder(
+  itemCount: businesses.length,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text(businesses[index]),
+    );
+  },
+)
+
+#### example proper
+List<String> businesses = [
+  "Coffee House",
+  "Pizza Point",
+  "Burger Lab",
+];
+
+ListView.builder(
+  itemCount: businesses.length,
+  itemBuilder: (context, index) {
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.store),
+        title: Text(businesses[index]),
+        subtitle: Text("Loyalty rewards available"),
+        trailing: Icon(Icons.arrow_forward_ios),
+      ),
+    );
+  },
+)
+
+
+#### GridView.count
+Flutter provides GridView.count to create a grid with a fixed number of columns.
+GridView.count(
+  crossAxisCount: 2,
+  children: [
+    Container(color: Colors.red),
+    Container(color: Colors.blue),
+    Container(color: Colors.green),
+    Container(color: Colors.orange),
+  ],
+)
+
+#### Understand these properties:
+- crossAxisCount: 2 → Displays 2 columns.
+- children → Contains the widgets you want to display.
+- Each Container → Represents one grid item.
+
+### GridView.builder
+Just like ListView.builder, GridView also has a builder version.
+Remember:
+- ListView.builder → Builds items vertically.
+- GridView.builder → Builds items in a grid.
+### Example: Punchy business grid
+List<String> businesses = [
+  "Coffee House",
+  "Pizza Point",
+  "Burger Lab",
+  "Sweet Shop",
+  "Food Corner",
+  "Cafe One",
+];
+
+GridView.builder(
+  itemCount: businesses.length,
+  gridDelegate:
+      SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+  ),
+  itemBuilder: (context, index) {
+    return Card(
+      child: Center(
+        child: Text(businesses[index]),
+      ),
+    );
+  },
+)
+
+
+#### Understand the new parts
+1. gridDelegate
+Controls how the grid is arranged.
+2. SliverGridDelegateWithFixedCrossAxisCount
+Tells Flutter to use a fixed number of columns.
+3. crossAxisCount: 2
+Displays two items in each row.
+4. itemBuilder
+Builds each item when needed, just like ListView.builder.
+
+
+#### mainAxisSpacing and crossAxisSpacing
+These control the gaps between grid items.
+mainAxisSpacing: Vertical gap between rows.
+crossAxisSpacing: Horizontal gap between columns.
+##### code
+GridView.builder(
+  itemCount: businesses.length,
+  gridDelegate:
+      SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    mainAxisSpacing: 10,
+    crossAxisSpacing: 10,
+  ),
+  itemBuilder: (context, index) {
+    return Card(
+      child: Text(businesses[index]),
+    );
+  },
+)
+
+
+### Chat UI
+
+#### code of creating a custom widget of chatbubble
+class ChatBubble extends StatelessWidget {
+  final String message;
+
+  const ChatBubble({
+    super.key,
+    required this.message,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+}
+#### then call it 
+ChatBubble(
+  message: "Hello bro!",
+)
+
+#### and if multiple
+Column(
+  children: [
+    ChatBubble(message: "Hello!"),
+    ChatBubble(message: "How are you?"),
+    ChatBubble(message: "I'm fine!"),
+  ],
+)
+
+### ChatList
+Imagine a messaging screen with 100 messages. Writing every ChatBubble manually would be difficult.
+
+Instead, we can store messages in a List and use ListView.builder to display them.
+#### code
+
+List<String> messages = [
+  "Hello!",
+  "How are you?",
+  "I'm fine!",
+  "What are you doing?",
+];
+
+ListView.builder(
+  itemCount: messages.length,
+  itemBuilder: (context, index) {
+    return ChatBubble(
+      message: messages[index],
+    );
+  },
+)
