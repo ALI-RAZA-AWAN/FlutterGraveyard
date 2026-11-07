@@ -450,8 +450,8 @@ ElevatedButton(
 Property	           Purpose
 backgroundColor	     Button background
 foregroundColor	     Text and icon color
-padding	Internal     spacing
-elevation	Shadow     depth
-minimumSize	Minimum  button size
-shape	Button shape
+padding	             Internal spacing
+elevation	           Shadow depth
+minimumSize	         Minimum button size
+shape	               Button shape
 
