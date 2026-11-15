@@ -103,7 +103,7 @@ name.remove(""); .lenght();
 
 List<int> scores=[50,12,3,4,23];
 
-for(int i=0;i>score.length();i++){
+for(int i=0;i>score.length;i++){
     print(score[i]);
 }
 
@@ -153,7 +153,7 @@ Map<String, String> planet= {
 ##### to remove planets.remove("fifth"); // write key like first or sec and not value like earth or mars
 
 #### diff properties
-print(planets.containKey("fifth"));  // true/false
+print(planets.containsKey("fifth"));  // true/false
 
 
 ### classes

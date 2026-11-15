@@ -359,11 +359,11 @@ void main(){
   runApp(
     MaterialApp(
       home:Scaffold(
-        Container(
+       body: Container(
           width:250,
           height:120,
           padding: EdgeInsets.all(15),
-          boxDecoration:BoxDecoration(
+          decoration:BoxDecoration(
               color:Colors.teal,
             borderRadius:BorderRadius.circular(12),
           ),
@@ -933,14 +933,26 @@ Remember the difference:
 ### Route Configuration — Complete Example
 
 We register all three routes:
-MaterialApp(
-  initialRoute: '/',
-  routes: {
-    '/': (context) => HomeScreen(),
-    '/rewards': (context) => RewardsScreen(),
-    '/profile': (context) => ProfileScreen(),
-  },
-);
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/rewards': (context) => RewardsScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
+    );
+  }
+}
+Remember this concept
+- MaterialApp: Application-level configuration (theme, routes, navigation).
+- Scaffold: Individual screen layout (AppBar, Body, Drawer, BottomNavigationBar).
 
 #### Navigate from home(home screen)
 class HomeScreen extends StatelessWidget {
